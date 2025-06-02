@@ -16,7 +16,7 @@ public class Requestion
 
     public DateTime RequestDate { get; set; }
 
-    public bool IsActive { get; set; }
+    public bool Active { get; set; }
 
     public long UserId { get; set; }
     public User User { get; set; }

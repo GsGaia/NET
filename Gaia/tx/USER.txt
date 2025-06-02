@@ -1,0 +1,9 @@
+{
+  "name": "João da Silva",
+  "email": "joao.silva@example.com",
+  "password": "SenhaForte123!",
+  "cpf": "12345678901",
+  "active": true,
+  "typeUser": "Admin",
+  "requestions": []
+}

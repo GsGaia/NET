@@ -12,7 +12,7 @@ public class UserContext :  DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>().HasKey(u => u.idUser);
+        modelBuilder.Entity<User>().HasKey(u => u.IdUser);
         base.OnModelCreating(modelBuilder);
     }
 }

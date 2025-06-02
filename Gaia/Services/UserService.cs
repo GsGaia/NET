@@ -6,9 +6,9 @@ namespace Gaia.Services;
 
 public class UserService
 {
-    private readonly DbPostgresql _context;
+    private readonly DbOracle _context;
 
-    public UserService(DbPostgresql context)
+    public UserService(DbOracle context)
     {
         _context = context;
     }
@@ -17,13 +17,8 @@ public class UserService
     {
         return await _context.Users.ToListAsync();
     }
-
-    public Task<User?> GetByIdAsync(long id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<User?> GetByIdAsync(int id)
+    
+    public async Task<User?> GetByIdAsync(long id)
     {
         return await _context.Users.FindAsync(id);
     }
@@ -36,36 +31,42 @@ public class UserService
             if (!user.ValidEmail()) throw new Exception("Email inválido.");
             if (!user.ValidPassword()) throw new Exception("Senha inválida.");
 
-            user.creationDate = DateTime.UtcNow;
-            user.active = true;
+            user.CreationDate = DateTime.UtcNow;
+            user.Active = true;
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return user;
         }
+        catch (DbUpdateException dbEx)
+        {
+            var innerMessage = dbEx.InnerException?.Message ?? dbEx.Message;
+            Console.WriteLine($"Erro ao salvar dados no banco: {innerMessage}");
+            throw new Exception($"Erro no banco: {innerMessage}", dbEx);
+        }
         catch (Exception ex)
         {
-            // Aqui você pode logar o erro real para facilitar o diagnóstico.
-            Console.WriteLine($"Erro ao criar usuário: {ex.ToString()}");
-            throw; // Re-throw a exceção após logar
+            Console.WriteLine($"Erro ao criar usuário: {ex.Message}");
+            throw;
         }
     }
 
 
-    public async Task<User> UpdateAsync(int id, User updated)
+
+    public async Task<User> UpdateAsync(long id, User updated)
     {
         var user = await _context.Users.FindAsync(id);
         if (user == null) throw new Exception("Usuário não encontrado.");
 
-        user.name = updated.name;
-        user.email = updated.email;
-        user.password = updated.password;
+        user.Name = updated.Name;
+        user.Email = updated.Email;
+        user.Password = updated.Password;
 
         await _context.SaveChangesAsync();
         return user;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(long id)
     {
         var user = await _context.Users.FindAsync(id);
         if (user == null) throw new Exception("Usuário não encontrado.");
