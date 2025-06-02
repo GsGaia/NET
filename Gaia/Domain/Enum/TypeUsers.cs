@@ -2,7 +2,7 @@ namespace Gaia.Domain.Enum;
 
 public enum TypeUsers
 {
-    Admin,
-    Client,
-    Moderator
+    Admin = 0,
+    Comum = 1,
+    Moderador = 2
 }

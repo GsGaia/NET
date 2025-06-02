@@ -1,0 +1,7 @@
+﻿services:
+  gaia:
+    image: gaia
+    build:
+      context: .
+      dockerfile: Gaia/Dockerfile
+

@@ -8,19 +8,16 @@ public class Accident
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public long idAccident { get; set; }
-    
-    //DataTime
-    public DateTime dateAccidentEnd { get; set; }
-    public DateTime dateAccidentStart { get; set; }
-    
-    //Enum
-    public TypeSeverity  typeSeverity { get; set; }
-    public TypeAccident typeAccident { get; set; }
-    
-    //Relacionamento
-    public long idLocation { get; set; }
-    
-    [ForeignKey("idLocation")]
-    public Location location { get; set; }
+    public long IdAccident { get; set; }
+
+    public DateTime DateAccidentStart { get; set; }
+    public DateTime DateAccidentEnd { get; set; }
+
+    public TypeSeverity TypeSeverity { get; set; }
+    public TypeAccident TypeAccident { get; set; }
+
+    public long LocationId { get; set; }
+
+    [ForeignKey("LocationId")]
+    public Location Location { get; set; }
 }

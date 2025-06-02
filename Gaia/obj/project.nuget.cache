@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1HZT6RiFPlo=",
+  "dgSpecHash": "L03xq+8JFaE=",
   "success": true,
   "projectFilePath": "/home/luiz/Área de trabalho/NET/Gaia/Gaia.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,8 @@
     "/home/luiz/.nuget/packages/microsoft.netcore.platforms/3.1.0/microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "/home/luiz/.nuget/packages/microsoft.openapi/1.6.14/microsoft.openapi.1.6.14.nupkg.sha512",
     "/home/luiz/.nuget/packages/microsoft.win32.registry/4.7.0/microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "/home/luiz/.nuget/packages/npgsql/9.0.3/npgsql.9.0.3.nupkg.sha512",
+    "/home/luiz/.nuget/packages/npgsql.entityframeworkcore.postgresql/9.0.4/npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512",
     "/home/luiz/.nuget/packages/oracle.entityframeworkcore/9.23.80/oracle.entityframeworkcore.9.23.80.nupkg.sha512",
     "/home/luiz/.nuget/packages/oracle.manageddataaccess.core/23.8.0/oracle.manageddataaccess.core.23.8.0.nupkg.sha512",
     "/home/luiz/.nuget/packages/runtime.native.system.data.sqlclient.sni/4.7.0/runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",

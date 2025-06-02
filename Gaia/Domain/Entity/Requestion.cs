@@ -8,21 +8,19 @@ public class Requestion
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public long idRequestion { get; set; }
-    
-    //String
-    public string title { get; set; }
-    public string description { get; set; }
-    public string unit { get; set; }
-    
-    //DataTime
+    public long IdRequestion { get; set; }
+
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public string Unit { get; set; }
+
     public DateTime RequestDate { get; set; }
 
-    //Boolean
-    public bool isActive { get; set; }
-    
-    //Relacionamentos
+    public bool IsActive { get; set; }
+
+    public long UserId { get; set; }
     public User User { get; set; }
-    public Location location { get; set; }
-    
+
+    public long LocationId { get; set; }
+    public Location Location { get; set; }
 }

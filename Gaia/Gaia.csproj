@@ -12,6 +12,8 @@
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.12"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.5" />
+        <PackageReference Include="Npgsql" Version="9.0.3" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
         <PackageReference Include="Oracle.EntityFrameworkCore" Version="9.23.80" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
     </ItemGroup>
@@ -23,11 +25,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controller\" />
       <Folder Include="Domain\Exceptions\" />
-      <Folder Include="Infrastructure\Context\" />
-      <Folder Include="Infrastructure\Mappings\" />
-      <Folder Include="Services\" />
     </ItemGroup>
 
 </Project>

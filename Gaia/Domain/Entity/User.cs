@@ -11,41 +11,24 @@ public class User
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long idUser { get; set; }
-    
-    //Strings
+
     public string name { get; set; }
     public string email { get; set; }
     public string password { get; set; }
     public string cpf { get; set; }
-    
-    //Data
+
     public DateTime creationDate { get; set; }
-    
-    //Boolean
-    public bool isActive { get; set; }
-    
-    //Enums
+
+    public bool active { get; set; }
+
     public TypeUsers typeUser { get; set; }
-    
-    //Relacionemto
+
     public ICollection<Requestion> requestions { get; set; } = new List<Requestion>();
 
+    public bool ValidCpf() => Regex.IsMatch(cpf, @"^\d{11}$");
 
-    public User() {}
+    public bool ValidEmail() => Regex.IsMatch(email, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
 
-    public bool validCpf()
-    {
-        return Regex.IsMatch(this.cpf, @"^\d{11}$");
-    }
-
-    public bool validEmail()
-    {
-        return Regex.IsMatch(this.email, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-    }
-
-    public bool ValidPassword()
-    {
-        return Regex.IsMatch(this.password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$");
-    }
-
+    public bool ValidPassword() =>
+        Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$");
 }

@@ -66,3 +66,5 @@
 /home/luiz/Área de trabalho/NET/Gaia/obj/Debug/net8.0/Gaia.pdb
 /home/luiz/Área de trabalho/NET/Gaia/obj/Debug/net8.0/Gaia.genruntimeconfig.cache
 /home/luiz/Área de trabalho/NET/Gaia/obj/Debug/net8.0/ref/Gaia.dll
+/home/luiz/Área de trabalho/NET/Gaia/bin/Debug/net8.0/Npgsql.dll
+/home/luiz/Área de trabalho/NET/Gaia/bin/Debug/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
