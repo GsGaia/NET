@@ -8,11 +8,10 @@ public class UserContext :  DbContext
     public UserContext(DbContextOptions<UserContext> options):  base(options){ }
 
     public DbSet<User> Users { get; set; }
-    public DbSet<Requestion>  Requestions { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>().HasKey(u => u.IdUser);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserContext).Assembly);
         base.OnModelCreating(modelBuilder);
     }
 }

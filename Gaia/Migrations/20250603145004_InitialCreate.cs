@@ -12,7 +12,7 @@ namespace Gaia.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Location",
+                name: "LOCATION",
                 columns: table => new
                 {
                     IdLocation = table.Column<long>(type: "NUMBER(19)", nullable: false)
@@ -21,12 +21,11 @@ namespace Gaia.Migrations
                     StartAccident = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
                     EndAccident = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
                     Status = table.Column<int>(type: "NUMBER(10)", nullable: false),
-                    Station = table.Column<int>(type: "NUMBER(10)", nullable: false),
-                    Active = table.Column<int>(type: "NUMBER(10)", nullable: false)
+                    Station = table.Column<int>(type: "NUMBER(10)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Location", x => x.IdLocation);
+                    table.PrimaryKey("PK_LOCATION", x => x.IdLocation);
                 });
 
             migrationBuilder.CreateTable(
@@ -40,7 +39,6 @@ namespace Gaia.Migrations
                     Password = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: false),
                     Cpf = table.Column<string>(type: "NVARCHAR2(11)", maxLength: 11, nullable: false),
                     CreationDate = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    Active = table.Column<int>(type: "NUMBER(10)", nullable: false),
                     TypeUser = table.Column<int>(type: "NUMBER(10)", nullable: false)
                 },
                 constraints: table =>
@@ -49,7 +47,7 @@ namespace Gaia.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Accident",
+                name: "ACCIDENT",
                 columns: table => new
                 {
                     IdAccident = table.Column<long>(type: "NUMBER(19)", nullable: false)
@@ -62,17 +60,17 @@ namespace Gaia.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Accident", x => x.IdAccident);
+                    table.PrimaryKey("PK_ACCIDENT", x => x.IdAccident);
                     table.ForeignKey(
-                        name: "FK_Accident_Location_LocationId",
+                        name: "FK_ACCIDENT_LOCATION_LocationId",
                         column: x => x.LocationId,
-                        principalTable: "Location",
+                        principalTable: "LOCATION",
                         principalColumn: "IdLocation",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Requestion",
+                name: "REQUESTION",
                 columns: table => new
                 {
                     IdRequestion = table.Column<long>(type: "NUMBER(19)", nullable: false)
@@ -81,63 +79,61 @@ namespace Gaia.Migrations
                     Description = table.Column<string>(type: "NVARCHAR2(1000)", maxLength: 1000, nullable: false),
                     Unit = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: false),
                     RequestDate = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    Active = table.Column<int>(type: "NUMBER(10)", nullable: false),
-                    UserId = table.Column<long>(type: "NUMBER(19)", nullable: false),
-                    UserIdUser = table.Column<long>(type: "NUMBER(19)", nullable: false),
-                    LocationId = table.Column<long>(type: "NUMBER(19)", nullable: false),
+                    IdUser = table.Column<long>(type: "NUMBER(19)", nullable: false),
+                    UserIdUser = table.Column<long>(type: "NUMBER(19)", nullable: true),
+                    IdLocation = table.Column<long>(type: "NUMBER(19)", nullable: false),
                     LocationIdLocation = table.Column<long>(type: "NUMBER(19)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Requestion", x => x.IdRequestion);
+                    table.PrimaryKey("PK_REQUESTION", x => x.IdRequestion);
                     table.ForeignKey(
-                        name: "FK_Requestion_Location_LocationId",
-                        column: x => x.LocationId,
-                        principalTable: "Location",
+                        name: "FK_REQUESTION_LOCATION_IdLocation",
+                        column: x => x.IdLocation,
+                        principalTable: "LOCATION",
                         principalColumn: "IdLocation",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Requestion_Location_LocationIdLocation",
+                        name: "FK_REQUESTION_LOCATION_LocationIdLocation",
                         column: x => x.LocationIdLocation,
-                        principalTable: "Location",
+                        principalTable: "LOCATION",
                         principalColumn: "IdLocation");
                     table.ForeignKey(
-                        name: "FK_Requestion_USERS_UserId",
-                        column: x => x.UserId,
+                        name: "FK_REQUESTION_USERS_IdUser",
+                        column: x => x.IdUser,
                         principalTable: "USERS",
                         principalColumn: "IdUser",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Requestion_USERS_UserIdUser",
+                        name: "FK_REQUESTION_USERS_UserIdUser",
                         column: x => x.UserIdUser,
                         principalTable: "USERS",
-                        principalColumn: "IdUser",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdUser");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Accident_LocationId",
-                table: "Accident",
+                name: "IX_ACCIDENT_LocationId",
+                table: "ACCIDENT",
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requestion_LocationId",
-                table: "Requestion",
-                column: "LocationId");
+                name: "IX_REQUESTION_IdLocation",
+                table: "REQUESTION",
+                column: "IdLocation");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requestion_LocationIdLocation",
-                table: "Requestion",
+                name: "IX_REQUESTION_IdUser",
+                table: "REQUESTION",
+                column: "IdUser");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_REQUESTION_LocationIdLocation",
+                table: "REQUESTION",
                 column: "LocationIdLocation");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requestion_UserId",
-                table: "Requestion",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Requestion_UserIdUser",
-                table: "Requestion",
+                name: "IX_REQUESTION_UserIdUser",
+                table: "REQUESTION",
                 column: "UserIdUser");
         }
 
@@ -145,13 +141,13 @@ namespace Gaia.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Accident");
+                name: "ACCIDENT");
 
             migrationBuilder.DropTable(
-                name: "Requestion");
+                name: "REQUESTION");
 
             migrationBuilder.DropTable(
-                name: "Location");
+                name: "LOCATION");
 
             migrationBuilder.DropTable(
                 name: "USERS");

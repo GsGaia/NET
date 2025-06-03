@@ -1,9 +1,10 @@
 {
-  "idLocation": 101,
-  "city": "São Paulo",
-  "startAccident": "2025-06-02T08:15:00.000Z",
-  "endAccident": "2025-06-02T09:45:00.000Z",
-  "status": 1,
-  "station": 3,
-  "active": true
+  "idLocation": 0,
+  "city": "string",
+  "startAccident": "2025-06-03T13:58:12.987Z",
+  "endAccident": "2025-06-03T13:58:12.987Z",
+  "status": "BOM",
+  "station": "AC",
+  "requestions": [],
+  "accidents": []
 }

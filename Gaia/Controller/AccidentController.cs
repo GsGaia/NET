@@ -18,6 +18,7 @@ namespace Gaia.Controller
 
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetAll()
         {
             var accidents = await _service.GetAllAsync();
@@ -35,6 +36,7 @@ namespace Gaia.Controller
         }
 
         [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Create([FromBody] Accident accident)

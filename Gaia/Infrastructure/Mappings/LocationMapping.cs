@@ -8,7 +8,7 @@ namespace Gaia.Infrastructure.Mappings
     {
         public void Configure(EntityTypeBuilder<Location> builder)
         {
-            builder.ToTable("Location");
+            builder.ToTable("LOCATION");
 
             builder.HasKey(l => l.IdLocation);
 
@@ -28,12 +28,9 @@ namespace Gaia.Infrastructure.Mappings
             builder.Property(l => l.Station)
                 .IsRequired();
 
-            builder.Property(l => l.Active)
-                .IsRequired();
-
             builder.HasMany(l => l.Requestions)
                 .WithOne(r => r.Location)
-                .HasForeignKey(r => r.LocationId);
+                .HasForeignKey(r => r.IdLocation);
 
             builder.HasMany(l => l.Accidents)
                 .WithOne(a => a.Location)

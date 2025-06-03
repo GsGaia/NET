@@ -6,20 +6,19 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuração do banco de dados
 builder.Services.AddDbContext<DbOracle>(options =>
     options.UseOracle(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Registro dos serviços
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<LocationService>();
 builder.Services.AddScoped<AccidentService>();
 builder.Services.AddScoped<RequestionService>();
 
-// Configuração dos controllers e JSON
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 
@@ -37,7 +36,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "GAIA API v1");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Gaia API v1");
         c.RoutePrefix = string.Empty;
     });
 }

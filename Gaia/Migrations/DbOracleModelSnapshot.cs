@@ -49,7 +49,7 @@ namespace Gaia.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Accident", (string)null);
+                    b.ToTable("ACCIDENT", (string)null);
                 });
 
             modelBuilder.Entity("Gaia.Domain.Entity.Location", b =>
@@ -59,9 +59,6 @@ namespace Gaia.Migrations
                         .HasColumnType("NUMBER(19)");
 
                     OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("IdLocation"));
-
-                    b.Property<int>("Active")
-                        .HasColumnType("NUMBER(10)");
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -82,7 +79,7 @@ namespace Gaia.Migrations
 
                     b.HasKey("IdLocation");
 
-                    b.ToTable("Location", (string)null);
+                    b.ToTable("LOCATION", (string)null);
                 });
 
             modelBuilder.Entity("Gaia.Domain.Entity.Requestion", b =>
@@ -93,16 +90,18 @@ namespace Gaia.Migrations
 
                     OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("IdRequestion"));
 
-                    b.Property<int>("Active")
-                        .HasColumnType("NUMBER(10)");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("NVARCHAR2(1000)");
 
-                    b.Property<long>("LocationId")
-                        .HasColumnType("NUMBER(19)");
+                    b.Property<long>("IdLocation")
+                        .HasColumnType("NUMBER(19)")
+                        .HasAnnotation("Relational:JsonPropertyName", "idUser");
+
+                    b.Property<long>("IdUser")
+                        .HasColumnType("NUMBER(19)")
+                        .HasAnnotation("Relational:JsonPropertyName", "idLocation");
 
                     b.Property<long?>("LocationIdLocation")
                         .HasColumnType("NUMBER(19)");
@@ -120,23 +119,20 @@ namespace Gaia.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("NVARCHAR2(100)");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("NUMBER(19)");
-
-                    b.Property<long>("UserIdUser")
+                    b.Property<long?>("UserIdUser")
                         .HasColumnType("NUMBER(19)");
 
                     b.HasKey("IdRequestion");
 
-                    b.HasIndex("LocationId");
+                    b.HasIndex("IdLocation");
+
+                    b.HasIndex("IdUser");
 
                     b.HasIndex("LocationIdLocation");
 
-                    b.HasIndex("UserId");
-
                     b.HasIndex("UserIdUser");
 
-                    b.ToTable("Requestion", (string)null);
+                    b.ToTable("REQUESTION", (string)null);
                 });
 
             modelBuilder.Entity("Gaia.Domain.Entity.User", b =>
@@ -146,9 +142,6 @@ namespace Gaia.Migrations
                         .HasColumnType("NUMBER(19)");
 
                     OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("IdUser"));
-
-                    b.Property<int>("Active")
-                        .HasColumnType("NUMBER(10)");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
@@ -196,7 +189,13 @@ namespace Gaia.Migrations
                 {
                     b.HasOne("Gaia.Domain.Entity.Location", "Location")
                         .WithMany()
-                        .HasForeignKey("LocationId")
+                        .HasForeignKey("IdLocation")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Gaia.Domain.Entity.User", null)
+                        .WithMany("Requestions")
+                        .HasForeignKey("IdUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -204,17 +203,9 @@ namespace Gaia.Migrations
                         .WithMany("Requestions")
                         .HasForeignKey("LocationIdLocation");
 
-                    b.HasOne("Gaia.Domain.Entity.User", null)
-                        .WithMany("Requestions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Gaia.Domain.Entity.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserIdUser")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserIdUser");
 
                     b.Navigation("Location");
 

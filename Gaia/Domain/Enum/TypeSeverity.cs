@@ -1,9 +1,11 @@
-namespace Gaia.Domain.Enum;
-
-public enum TypeSeverity
+namespace Gaia.Domain.Enum
 {
-    BAIXA,
-    MEDIA,
-    ALTA,
-    EXTREMA
+
+    public enum TypeSeverity
+    {
+        BAIXA,
+        MEDIA,
+        ALTA,
+        EXTREMA
+    }
 }

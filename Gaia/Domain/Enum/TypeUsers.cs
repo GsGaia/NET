@@ -1,8 +1,10 @@
-namespace Gaia.Domain.Enum;
-
-public enum TypeUsers
+namespace Gaia.Domain.Enum
 {
-    Admin = 0,
-    Comum = 1,
-    Moderador = 2
+
+    public enum TypeUsers
+    {
+        Admin = 0,
+        Comum = 1,
+        Moderador = 2
+    }
 }

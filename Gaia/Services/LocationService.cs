@@ -2,8 +2,7 @@ using Gaia.Domain.Entity;
 using Gaia.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Gaia.Services
-{
+namespace Gaia.Services {
     public class LocationService
     {
         private readonly DbOracle _context;
@@ -17,6 +16,7 @@ namespace Gaia.Services
         {
             return await _context.Locations
                 .Include(l => l.Accidents)
+                .Include(l => l.Requestions)
                 .ToListAsync();
         }
 
@@ -24,6 +24,7 @@ namespace Gaia.Services
         {
             return await _context.Locations
                 .Include(l => l.Accidents)
+                .Include(l => l.Requestions)
                 .FirstOrDefaultAsync(l => l.IdLocation == id);
         }
 
@@ -58,7 +59,6 @@ namespace Gaia.Services
             location.StartAccident = updated.StartAccident;
             location.EndAccident = updated.EndAccident;
             location.Status = updated.Status;
-            location.Active = updated.Active;
 
             await _context.SaveChangesAsync();
             return location;

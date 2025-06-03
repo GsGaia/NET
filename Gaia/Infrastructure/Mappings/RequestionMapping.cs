@@ -8,7 +8,7 @@ namespace Gaia.Infrastructure.Mappings
     {
         public void Configure(EntityTypeBuilder<Requestion> builder)
         {
-            builder.ToTable("Requestion");
+            builder.ToTable("REQUESTION");
 
             builder.HasKey(r => r.IdRequestion);
 
@@ -25,16 +25,18 @@ namespace Gaia.Infrastructure.Mappings
             builder.Property(r => r.RequestDate)
                 .IsRequired();
 
-            builder.Property(r => r.Active)
+            builder.HasOne(r => r.User)
+                .WithMany(u => u.Requestions)
+                .HasForeignKey(r => r.IdUser)
+                .HasPrincipalKey(u => u.IdUser)
+                .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired();
 
-            builder.HasOne(r => r.User)
-                .WithMany()
-                .HasForeignKey(r => r.UserId);
 
             builder.HasOne(r => r.Location)
                 .WithMany()
-                .HasForeignKey(r => r.LocationId);
+                .HasForeignKey(r => r.IdLocation);
         }
+
     }
 }

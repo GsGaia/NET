@@ -2,7 +2,7 @@ using Gaia.Domain.Entity;
 using Gaia.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Gaia.Services;
+namespace Gaia.Services{
     public class RequestionService
     {
         private readonly DbOracle _context;
@@ -12,6 +12,24 @@ namespace Gaia.Services;
             _context = context;
         }
 
+        public async Task<bool> UserExistsAsync(long idUser)
+        {
+            var count = await _context.Users.CountAsync(u => u.IdUser == idUser);
+            Console.WriteLine($"Verificando usuário {idUser}, count={count}");
+            return count > 0;
+        }
+
+
+
+        public async Task<bool> LocationExistsAsync(long locationId)
+        {
+            var count = await _context.Locations.CountAsync(l => l.IdLocation == locationId);
+            Console.WriteLine($"Verificando usuário {locationId}, count={count}");
+            return count > 0;
+        }
+
+        
+        
         public async Task<IEnumerable<Requestion>> GetAllAsync()
         {
             return await _context.Requestions
@@ -56,11 +74,14 @@ namespace Gaia.Services;
             
             req.Title = requestion.Title;
             req.Description = requestion.Description;
-            req.Location = requestion.Location;
-            
+            req.Unit = requestion.Unit;
+            req.RequestDate = requestion.RequestDate;
+            req.IdLocation = requestion.IdLocation;
+            req.IdUser = requestion.IdUser;
+
             
             await _context.SaveChangesAsync();
-            return requestion;
+            return req;
         }
 
         public async Task DeleteAsync(long id)
@@ -72,3 +93,4 @@ namespace Gaia.Services;
             await _context.SaveChangesAsync();
         }
     }
+}

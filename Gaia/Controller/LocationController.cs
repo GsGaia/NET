@@ -26,7 +26,6 @@ namespace Gaia.Controller
 
         [HttpGet("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetById(long id)
         {
             var location = await _service.GetByIdAsync(id);
@@ -35,8 +34,8 @@ namespace Gaia.Controller
         }
 
         [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.Created)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Create([FromBody] Location location)
         {
             try
@@ -52,8 +51,6 @@ namespace Gaia.Controller
 
         [HttpPut("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Update(long id, [FromBody] Location location)
         {
             try
@@ -70,8 +67,7 @@ namespace Gaia.Controller
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType((int)HttpStatusCode.NoContent)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> Delete(long id)
         {
             try

@@ -1,26 +1,36 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace Gaia.Domain.Entity;
-
-[Table("Requestion")]
-public class Requestion
+namespace Gaia.Domain.Entity
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public long IdRequestion { get; set; }
 
-    public string Title { get; set; }
-    public string Description { get; set; }
-    public string Unit { get; set; }
+    [Table("REQUESTION")]
+    public class Requestion
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long IdRequestion { get; set; }
 
-    public DateTime RequestDate { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Unit { get; set; }
+        public DateTime RequestDate { get; set; }
 
-    public bool Active { get; set; }
 
-    public long UserId { get; set; }
-    public User User { get; set; }
+        [BindNever] 
+        [JsonIgnore] 
+        public virtual User? User { get; set; }
+        
+        [BindNever] 
+        [JsonIgnore] 
+        public virtual Location? Location { get; set; }
 
-    public long LocationId { get; set; }
-    public Location Location { get; set; }
+        [JsonPropertyName("idUser")] 
+        public long IdUser { get; set; }
+
+        [JsonPropertyName("idLocation")] 
+        public long IdLocation { get; set; }
+    }
 }

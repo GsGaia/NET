@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Gaia.Domain.Entity;
 
-namespace Gaia.Infrastructure.Mappings;
+namespace Gaia.Infrastructure.Mappings{
 
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {
@@ -34,17 +34,16 @@ namespace Gaia.Infrastructure.Mappings;
 
             builder.Property(u => u.CreationDate)
                 .IsRequired();
-
-            builder.Property(u => u.Active)
-                .IsRequired();
-
+            
             builder.Property(u => u.TypeUser)
                 .IsRequired()
                 .HasConversion<int>(); 
 
             builder.HasMany(u => u.Requestions)
-                .WithOne()
-                .HasForeignKey("UserId")
-                .OnDelete(DeleteBehavior.Cascade);
+                .WithOne(r => r.User)
+                .HasForeignKey(r => r.IdUser)
+                .IsRequired();
+
         }
     }
+}

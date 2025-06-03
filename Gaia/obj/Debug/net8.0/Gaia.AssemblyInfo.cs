@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Gaia")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6eec47a5baf8b24a981d4ea5a08712a1901293fb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+568f35bbf12979f5073b3d5784bfee9bb726b5a8")]
 [assembly: System.Reflection.AssemblyProductAttribute("Gaia")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Gaia")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

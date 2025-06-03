@@ -2,8 +2,7 @@ using Gaia.Domain.Entity;
 using Gaia.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Gaia.Services
-{
+namespace Gaia.Services{
     public class AccidentService
     {
         private readonly DbOracle _context;

@@ -8,7 +8,7 @@ namespace Gaia.Infrastructure.Mappings
     {
         public void Configure(EntityTypeBuilder<Accident> builder)
         {
-            builder.ToTable("Accident");
+            builder.ToTable("ACCIDENT");
 
             builder.HasKey(a => a.IdAccident);
 

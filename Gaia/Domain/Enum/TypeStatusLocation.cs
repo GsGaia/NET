@@ -1,10 +1,11 @@
-namespace Gaia.Domain.Enum;
-
-public enum TypeStatusLocation
+namespace Gaia.Domain.Enum
 {
-    BOM,
-    NECESSITA_AJUDA,
-    EMERGENCIA,
-    SEM_INFORMACAO,
-    FINALIZADA
+    public enum TypeStatusLocation
+    {
+        BOM,
+        NECESSITA_AJUDA,
+        EMERGENCIA,
+        SEM_INFORMACAO,
+        FINALIZADA
+    }
 }
