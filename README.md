@@ -55,10 +55,46 @@ A API foi construída em .NET 8 seguindo uma arquitetura limpa e organizada para
 
 #### Diagrama de Entidade-Relacionamento (DER)
 
-**Atenção:** Substitua a imagem abaixo pelo diagrama real do seu banco de dados, que é um requisito da Global Solution.
+Este diagrama mostra como as principais entidades do sistema se conectam.
 
-![https://i.imgur.com/URL_DA_SUA_IMAGEM_DO_DIAGRAMA.png](https://i.imgur.com/URL_DA_SUA_IMAGEM_DO_DIAGRAMA.png)
-*(Exemplo de como as entidades se relacionam)*
+```mermaid
+erDiagram
+    USER {
+        long IdUser
+        string Name
+        string Email
+        string Cpf
+        string Password
+        TypeUsers TypeUser
+    }
+
+    LOCATION {
+        long IdLocation
+        string City
+        TypeStation Station
+        TypeStatusLocation Status
+    }
+
+    REQUESTION {
+        long IdRequestion
+        string Title
+        string Description
+        string Unit
+        long IdUser
+        long IdLocation
+    }
+
+    ACCIDENT {
+        long IdAccident
+        TypeAccident TypeAccident
+        TypeSeverity TypeSeverity
+        long LocationId
+    }
+
+    USER ||--o{ REQUESTION : "cria"
+    LOCATION ||--o{ REQUESTION : "recebe"
+    LOCATION ||--o{ ACCIDENT : "sofre"
+```
 
 ---
 
@@ -86,7 +122,7 @@ Siga os passos abaixo para executar a API em seu ambiente local.
 
 **1. Clone o Repositório**
 ```bash
-git clone [https://github.com/GsGaia/SNET.git](https://github.com/GsGaia/NET.git)
+git clone [https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git](https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git)
 cd SEU-REPOSITORIO
 ```
 
@@ -125,7 +161,8 @@ Use os exemplos abaixo para testar a criação de recursos no Swagger.
   "email": "joao.silva@example.com",
   "password": "SenhaForte123!",
   "cpf": "12345678901",
-  "typeUser": "Admin"
+  "typeUser": "Admin",
+  "requestions": []
 }
 ```
 </details>
@@ -136,11 +173,14 @@ Use os exemplos abaixo para testar a criação de recursos no Swagger.
 **Request Body:**
 ```json
 {
-  "city": "São Paulo",
-  "startAccident": "2025-06-08T14:30:00Z",
-  "endAccident": "2025-06-10T18:00:00Z",
-  "status": "EMERGENCIA",
-  "station": "SP"
+  "idLocation": 0,
+  "city": "string",
+  "startAccident": "2025-06-03T13:58:12.987Z",
+  "endAccident": "2025-06-03T13:58:12.987Z",
+  "status": "BOM",
+  "station": "AC",
+  "requestions": [],
+  "accidents": []
 }
 ```
 </details>
@@ -151,11 +191,11 @@ Use os exemplos abaixo para testar a criação de recursos no Swagger.
 **Request Body:**
 ```json
 {
-  "dateAccidentStart": "2025-06-08T15:00:00Z",
-  "dateAccidentEnd": "2025-06-08T22:00:00Z",
-  "typeSeverity": "ALTA",
+  "dateAccidentStart": "2025-06-02T20:19:22.124Z",
+  "dateAccidentEnd": "2025-06-02T20:19:22.124Z",
+  "typeSeverity": "BAIXA",
   "typeAccident": "ENCHENTE",
-  "locationId": 1
+  "locationId": 2
 }
 ```
 </details>
@@ -166,12 +206,13 @@ Use os exemplos abaixo para testar a criação de recursos no Swagger.
 **Request Body:**
 ```json
 {
-  "title": "Doação de Água Potável",
-  "description": "Necessidade urgente de galões de água para o abrigo central.",
-  "unit": "Galões",
-  "requestDate": "2025-06-08T16:00:00Z",
-  "idUser": 1,
-  "idLocation": 1
+  "idRequestion": 0,
+  "title": "Nova Solicitação",
+  "description": "Descrição teste",
+  "unit": "Kg",
+  "requestDate": "2025-06-03T16:35:00.614Z",
+  "idUser": 3,
+  "idLocation": 3
 }
 ```
 </details>
