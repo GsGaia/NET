@@ -231,5 +231,6 @@ Use os exemplos abaixo para testar a criação de recursos no Swagger.
 
 ## 🎥 Vídeos do Projeto
 
--   **[Assista ao Pitch da Solução (3 min)](https://www.canva.com/design/DAGJWb25iBw/L6xT_3d-WESf2h-R2ODfbA/edit?utm_content=DAGJWb25iBw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)**
--   **[Assista à Demonstração Completa (8 min)](link-para-seu-video-aqui)**
+-   **[Pitch](https://youtu.be/JuaJ-MDg9nc)**
+-   **[Assista à Demonstração Completa (8 min)](https://youtu.be/WYma64qzMrI)**
+
