@@ -1,7 +1,0 @@
-{
-  "dateAccidentStart": "2025-06-02T20:19:22.124Z",
-  "dateAccidentEnd": "2025-06-02T20:19:22.124Z",
-  "typeSeverity": "BAIXA",
-  "typeAccident": "ENCHENTE",
-  "locationId": 2
-}
